@@ -12,5 +12,4 @@ O objetivo é se comunicar com api https://github.com/robertoduessmann/weather-a
 - Injeção de Dependência com Hilt
 - Retrofit
 - Padrões de projeto como Repository com utilização de Interface
-# trainingWithPublicAPIs
 
