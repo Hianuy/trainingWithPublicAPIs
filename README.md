@@ -6,12 +6,10 @@ O objetivo é se comunicar com api https://rickandmortyapi.com/ e pegar a lista 
 
 # O que foi usado na construção do Aplicativo?
 
-
 - Kotlin
 - Xml para construção dos layouts
-- ViewBinding
 - MVVM
 - Coroutines
-- Injeção de Dependência com Hilt
+- Injeção de Dependência com Koin
 - Retrofit
-- Padrões de projeto como Repository com utilização de Interface
+- RecyclerView
