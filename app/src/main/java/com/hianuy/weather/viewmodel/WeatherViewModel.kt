@@ -19,23 +19,34 @@ constructor(private val repository: WeatherRepository): ViewModel(){
     val weatherResponse: LiveData<Weather>
     get() = _response
 
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String>
+    get() = _errorMessage
+
+
+    private val _loading = MutableLiveData<Boolean>()
+    val loading :  LiveData<Boolean>
+    get() = _loading
+
+
 
     init {
         getWeather()
     }
 
     private fun getWeather() = viewModelScope.launch {
+        _loading.postValue(true)
         repository.getWeather().let { response->
             if (response.isSuccessful){
                 _response.postValue(response.body())
+                _loading.postValue(false)
             }else{
-                Log.e("Error", "getWeather Error Response ${response.message()} " )
+                _errorMessage.postValue(response.message())
+                _loading.postValue(false)
             }
 
         }
     }
-    private fun getCity(){
 
-    }
 }
 

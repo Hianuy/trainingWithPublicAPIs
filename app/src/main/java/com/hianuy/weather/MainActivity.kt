@@ -1,12 +1,16 @@
 package com.hianuy.weather
 
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import com.hianuy.weather.databinding.ActivityMainBinding
 import com.hianuy.weather.viewmodel.WeatherViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import android.view.View.*
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -18,9 +22,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        observerEvents()
+
+    }
+
+    private fun observerEvents() {
+
+        viewModel.loading.observe(this, { isLoading ->
+            if (isLoading)
+                binding.progressbar.visibility = VISIBLE
+            else
+                binding.progressbar.visibility = GONE
 
 
-
+        })
         viewModel.weatherResponse.observe(this, { weather ->
             binding.apply {
                 txtCity.text = "Fortaleza"
@@ -38,6 +53,12 @@ class MainActivity : AppCompatActivity() {
 
 
         })
+
+        viewModel.errorMessage.observe(this) { message ->
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        }
+
+
     }
 
 

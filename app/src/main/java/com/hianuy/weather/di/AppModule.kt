@@ -1,6 +1,7 @@
 package com.hianuy.weather.di
 
 import com.google.gson.Gson
+import com.hianuy.weather.BuildConfig
 import com.hianuy.weather.api.ApiService
 import com.hianuy.weather.utils.Constants
 import dagger.Module
@@ -17,7 +18,8 @@ import javax.inject.Singleton
 object AppModule {
 
     @Provides
-    fun providesBaseUrl() = Constants.BASE_URL
+    fun providesBaseUrl() =  BuildConfig.BASE_URL
+
 
     @Provides
     @Singleton
